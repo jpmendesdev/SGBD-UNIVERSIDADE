@@ -5,8 +5,11 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import DAO.Create;
+import DAO.Delete;
 import DAO.Read;
 import entities.Aluno;
+import entities.AlunoCadeira;
+import entities.Cadeira;
 import entities.Curso;
 import entities.Professor;
 
@@ -31,12 +34,14 @@ public class Program {
 			System.out.println("--BEM VINDO AO SGBD-X---");
 			System.out.println("MENU");
 			System.out.println("1 - Criar Curso");
-			System.out.println("2 - Matricular Aluno");
-			System.out.println("3 - Matricular Professor");
-			System.out.println("4 - Visualizar Cursos");
-			System.out.println("5 - Visualizar Alunos");
-			System.out.println("6 - Matricular Aluno em Cadeira");
-			System.out.println("7 - Sair");
+			System.out.println("2 - Cria Cadeira");
+			System.out.println("3 - Matricular Aluno");
+			System.out.println("4 - Matricular Professor");
+			System.out.println("5 - Visualizar Cursos");
+			System.out.println("6 - Visualizar Alunos");
+			System.out.println("7 - Matricular Aluno em Cadeira");
+			System.out.println("8 - Deletar tabela");
+			System.out.println("9 - Sair");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -50,6 +55,18 @@ public class Program {
 					create.InsereElementos(curso);
 					break;
 				case "2":
+					System.out.print("Informe o nome da nova cadeira: ");
+					String novaCadeira = sc.nextLine();
+					System.out.print("Informe a quantidade de créditos: ");
+					int creditos = sc.nextInt();
+					sc.nextLine();
+					System.out.print("Informe o curso da cadeira: ");
+					int id_curso = sc.nextInt();
+					sc.nextLine();
+					Cadeira cadeira = new Cadeira(novaCadeira,creditos,id_curso);
+					create.inserirCadeira(cadeira);
+					break;
+				case "3":
 					System.out.print("Digite o nome do aluno: ");
 					String nomeAluno = sc.nextLine();
 					System.out.print("Digite o e-mail do aluno: ");
@@ -60,7 +77,7 @@ public class Program {
 					Aluno aluno = new Aluno(nomeAluno,emailAluno,idCurso);
 					create.inserirAluno(aluno);
 					break;
-				case "3":
+				case "4":
 					System.out.print("Digite o nome do professor: ");
 					String nomeProfessor = sc.nextLine();
 					System.out.print("Digite o e-mail do professor: ");
@@ -71,19 +88,31 @@ public class Program {
 					Professor professor = new Professor(nomeProfessor,emailProfessor,idCursop);
 					create.inserirProfessor(professor);
 					break;
-				case "4":
+				case "5":
 					 Read read = new Read();
 					 read.visualizarCursos();
 					break;
-				case "5":
+				case "6":
 					Read readAlunos = new Read();
 					readAlunos.visualizarAlunos();
-				case "6":
-					System.out.print("Digite a matricula do aluno que deseja matricular nessa cadeira:");
-					int 
+				case "7":
+					AlunoCadeira alunoDefault = new AlunoCadeira();
+					String situacaoD = alunoDefault.getSituacao();
+					
+					System.out.print("Informe o id do aluno que deseja matricular: ");
+					int id_aluno = sc.nextInt();
+					sc.nextLine();
+					System.out.print("Informe o id da cadeira que deseja matricular o aluno: ");
+					int id_cadeira = sc.nextInt();
+					sc.nextLine();
+					AlunoCadeira alunoC = new AlunoCadeira(situacaoD,id_aluno,id_cadeira);
+					create.matricularAlunoCadeira(alunoC);
+				case "8":
+					System.out.println("...");
+					break;
 			}
 			
-			if(op.equals("7")) {
+			if(op.equals("9")) {
 				System.out.println("Saindo...");
 				break;
 			}

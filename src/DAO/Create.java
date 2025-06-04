@@ -5,6 +5,8 @@ import java.sql.SQLException;
 
 import connection.Conexao;
 import entities.Aluno;
+import entities.AlunoCadeira;
+import entities.Cadeira;
 import entities.Curso;
 import entities.Professor;
 
@@ -47,13 +49,13 @@ public class Create {
 				+ " id_curso INT,\n"
 				+ " FOREIGN KEY (id_curso) REFERENCES Curso(id_curso));";
 		
-		String sqlTabelaCadeiraAluno = "CREATE TABLE Aluno_Cadeira (\n"
-				+ "	id_matricula INT PRIMARY KEY AUTO_INCREMENT,\n"
-				+ "    nome VARCHAR (50),\n"
-				+ "    creditos INT,\n"
+		String sqlTabelaAlunoCadeira = "CREATE TABLE IF NOT EXISTS Aluno_Cadeira (\n"
+				+ "    id_matricula_cadeira INT PRIMARY KEY AUTO_INCREMENT,\n"
 				+ "    situacao VARCHAR(20),\n"
 				+ "    id_aluno INT,\n"
-				+ "    FOREIGN KEY (id_aluno) REFERENCES Aluno(id_aluno)\n"
+				+ "    id_cadeira INT,\n"
+				+ "    FOREIGN KEY (id_aluno) REFERENCES Aluno(id_aluno),\n"
+				+ "    FOREIGN KEY (id_cadeira) REFERENCES Cadeira(id_cadeira)"
 				+ ");";
 		
 		try {
@@ -62,7 +64,7 @@ public class Create {
 		ps2 = Conexao.getConexao().prepareStatement(sqlTabelaAluno);
 		ps3 = Conexao.getConexao().prepareStatement(sqlTabelaProfessor);
 		ps4 = Conexao.getConexao().prepareStatement(sqlTabelaCadeira);
-		ps5 = Conexao.getConexao().prepareStatement(sqlTabelaCadeiraAluno);
+		ps5 = Conexao.getConexao().prepareStatement(sqlTabelaAlunoCadeira);
 		
 		ps.execute();
 		System.out.println("PS executando");
@@ -144,10 +146,43 @@ public class Create {
 		
 	}
 	
-	public void inserirAlunoCadeira(Aluno aluno) {
+	public void matricularAlunoCadeira(AlunoCadeira alunoCadeira) {
 		
-		String sqlAlunoCadeira = "INSERT INTO Aluno_Cadeira (creditos,situacao,id_aluno)\n"
-				+ "VALUES (? , ?, ?, ?);";
+		String sqlAlunoCadeira = "INSERT INTO Aluno_Cadeira (situacao,id_aluno,id_cadeira)\n"
+				+ "VALUES (?, ?, ?);";
+		
+		try {
+			ps = Conexao.getConexao().prepareStatement(sqlAlunoCadeira);
+			
+			ps.setString(1,alunoCadeira.getSituacao());
+			ps.setInt(2,alunoCadeira.getId_aluno());
+			ps.setInt(3,alunoCadeira.getId_cadeira());
+			
+			ps.execute();
+			ps.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void inserirCadeira(Cadeira cadeira) {
+		
+		String sqlNovaCadeira = "INSERT INTO Cadeira (nome,creditos,id_curso)\n"
+						+ "VALUES (?, ?, ?)";
+		
+		try {
+			ps = Conexao.getConexao().prepareStatement(sqlNovaCadeira);
+			
+			ps.setString(1,cadeira.getNome());
+			ps.setInt(2,cadeira.getCreditos());
+			ps.setInt(3,cadeira.getId_curso());
+			
+			ps.execute();
+			ps.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
