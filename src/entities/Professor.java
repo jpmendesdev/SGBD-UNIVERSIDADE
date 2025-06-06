@@ -19,6 +19,11 @@ public class Professor {
 		this.email = email;
 		this.id_curso = id_curso;
 	}
+	
+	public Professor(int id_professor) {
+		this.id_professor = id_professor;
+	}
+
 
 	public int getId_professor() {
 		return id_professor;

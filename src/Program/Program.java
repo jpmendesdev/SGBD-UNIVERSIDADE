@@ -44,6 +44,7 @@ public class Program {
 			System.out.println("8 - Matricular Professor em Cadeira");
 			System.out.println("9 - Deletar tabela");
 			System.out.println("10 - Aluno - Trancar Curso");
+			System.out.println("11 - Professor - Afastar do curso");
 			System.out.println("0 - Sair");
 			String op = sc.nextLine();
 			
@@ -130,9 +131,17 @@ public class Program {
 					System.out.print("Informe o id do aluno que deseja trancar o curso: ");
 					int id_alunoD = sc.nextInt();
 					sc.nextLine();
-					Aluno alunoDelete = new Aluno(id_alunoD);
+					Aluno alunoUpdate = new Aluno(id_alunoD);
 					Update updateAluno = new Update();
-					updateAluno.desmatricularAluno(alunoDelete);
+					updateAluno.desmatricularAluno(alunoUpdate);
+					break;
+				case "11":
+					System.out.println("Informe o id do professor que deseja afastar: ");
+					int id_professorD = sc.nextInt();
+					sc.nextLine();
+					Professor professorUpdate = new Professor(id_professorD);
+					Update updateProfessor = new Update();
+					updateProfessor.desmatricularProfessor(professorUpdate);
 					break;
 			}
 			

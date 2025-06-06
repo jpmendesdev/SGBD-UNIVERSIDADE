@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import connection.Conexao;
 import entities.Aluno;
+import entities.Professor;
 
 public class Update {
 	
@@ -29,6 +30,24 @@ public class Update {
 		
 	}
 	
+  public void desmatricularProfessor (Professor professor) {
+	  
+	  String desmatricularProfessor = "UPDATE Professor\n"
+			  + "SET situacao = 'afastado/demitido'\n"
+			  + "WHERE id_professor = ?";
+	  
+	  try {
+		  ps = Conexao.getConexao().prepareStatement(desmatricularProfessor);
+		  
+		  ps.setInt(1, professor.getId_professor());
+		  
+		  ps.execute();
+		  ps.close();
+	  }catch (SQLException e) {
+		  e.printStackTrace();
+	  }
+	  
+  }
 	
 	
 
