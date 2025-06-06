@@ -9,6 +9,7 @@ import entities.AlunoCadeira;
 import entities.Cadeira;
 import entities.Curso;
 import entities.Professor;
+import entities.ProfessorCadeira;
 
 
 public class Create {
@@ -21,6 +22,7 @@ public class Create {
 		PreparedStatement ps3 = null;
 		PreparedStatement ps4 = null;
 		PreparedStatement ps5 = null;
+		PreparedStatement ps6 = null;
 		
 		String sqlTabelaCurso = "CREATE TABLE IF NOT EXISTS Curso (\r\n"
 				+ "	   id_curso INT PRIMARY KEY UNIQUE AUTO_INCREMENT NOT NULL,\r\n"
@@ -57,6 +59,15 @@ public class Create {
 				+ "    FOREIGN KEY (id_aluno) REFERENCES Aluno(id_aluno),\n"
 				+ "    FOREIGN KEY (id_cadeira) REFERENCES Cadeira(id_cadeira)"
 				+ ");";
+		String sqlTabelaProfessorCadeira = "CREATE TABLE IF NOT EXISTS Professor_Cadeira (\n"
+				+ " id_matricula_cadeira INT PRIMARY KEY AUTO_INCREMENT,\n"
+				+ " situacao VARCHAR(20),\n"
+				+ " id_professor INT,\n"
+				+ " id_cadeira INT,\n"
+				+ " FOREIGN KEY (id_professor) REFERENCES Professor(id_professor),\n"
+				+ " FOREIGN KEY (id_cadeira)  REFERENCES Cadeira(id_cadeira));";
+				
+
 		
 		try {
 			
@@ -65,9 +76,9 @@ public class Create {
 		ps3 = Conexao.getConexao().prepareStatement(sqlTabelaProfessor);
 		ps4 = Conexao.getConexao().prepareStatement(sqlTabelaCadeira);
 		ps5 = Conexao.getConexao().prepareStatement(sqlTabelaAlunoCadeira);
+		ps6 = Conexao.getConexao().prepareStatement(sqlTabelaProfessorCadeira);
 		
 		ps.execute();
-		System.out.println("PS executando");
 		ps.close();
 		ps2.execute();
 		ps2.close();
@@ -77,6 +88,8 @@ public class Create {
 		ps4.close();
 		ps5.execute();
 		ps5.close();
+		ps6.execute();
+		ps6.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -166,6 +179,26 @@ public class Create {
 		
 	}
 	
+	public void matricularProfessorCadeira(ProfessorCadeira professorCadeira) {
+		
+	  String sqlProfessorCadeira = "INSERT INTO Professor_Cadeira (situacao,id_professor,id_cadeira)\n"
+			 + "VALUES (?, ?, ?)";
+	  
+	  try {
+		  ps = Conexao.getConexao().prepareStatement(sqlProfessorCadeira);
+		  ps.setString(1, professorCadeira.getSituacao());
+		  ps.setInt(2, professorCadeira.getId_professor());
+		  ps.setInt(3, professorCadeira.getId_cadeira());
+		  
+		  ps.execute();
+		  ps.close();
+		  
+	  }catch (SQLException e) {
+		  e.printStackTrace();
+	  }
+		
+	}
+	
 	public void inserirCadeira(Cadeira cadeira) {
 		
 		String sqlNovaCadeira = "INSERT INTO Cadeira (nome,creditos,id_curso)\n"
@@ -185,5 +218,7 @@ public class Create {
 		}
 		
 	}
+	
+
 	
 }

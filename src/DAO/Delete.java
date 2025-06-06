@@ -25,4 +25,19 @@ public class Delete {
 		
 	}
 	
+	public void desmatricularAluno() {
+		
+		String dropAluno = "DELETE FROM Aluno WHERE aluno_id = ?";
+		
+		try {
+			ps = Conexao.getConexao().prepareStatement(dropAluno);
+			
+			ps.execute();
+			ps.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 }

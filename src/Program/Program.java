@@ -5,13 +5,13 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import DAO.Create;
-import DAO.Delete;
 import DAO.Read;
 import entities.Aluno;
 import entities.AlunoCadeira;
 import entities.Cadeira;
 import entities.Curso;
 import entities.Professor;
+import entities.ProfessorCadeira;
 
 
 
@@ -31,17 +31,18 @@ public class Program {
 		
 		 
 		while(true) {
-			System.out.println("--BEM VINDO AO SGBD-X---");
+			System.out.println("--BEM VINDO AO SGBD-X---");     
 			System.out.println("MENU");
 			System.out.println("1 - Criar Curso");
 			System.out.println("2 - Cria Cadeira");
-			System.out.println("3 - Matricular Aluno");
-			System.out.println("4 - Matricular Professor");
+			System.out.println("3 - Matricular Aluno em curso");
+			System.out.println("4 - Matricular Professor em curso");
 			System.out.println("5 - Visualizar Cursos");
 			System.out.println("6 - Visualizar Alunos");
 			System.out.println("7 - Matricular Aluno em Cadeira");
-			System.out.println("8 - Deletar tabela");
-			System.out.println("9 - Sair");
+			System.out.println("8 - Matricular Professor em Cadeira");
+			System.out.println("9 - Deletar tabela");
+			System.out.println("10 - Sair");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -108,8 +109,20 @@ public class Program {
 					AlunoCadeira alunoC = new AlunoCadeira(situacaoD,id_aluno,id_cadeira);
 					create.matricularAlunoCadeira(alunoC);
 				case "8":
-					System.out.println("...");
+					ProfessorCadeira professorDefault = new ProfessorCadeira();
+					String situacaoP = professorDefault.getSituacao();
+					
+					System.out.print("Informe o id do professor que deseja matricular: ");
+					int id_professor = sc.nextInt();
+					sc.nextLine();
+					System.out.print("Informe o id da cadeira que o professor vai lecionar: ");
+					int id_cadeiraP = sc.nextInt();
+					sc.nextLine();
+					ProfessorCadeira professorC = new ProfessorCadeira(situacaoP,id_professor,id_cadeiraP);
+					create.matricularProfessorCadeira(professorC);
 					break;
+				case "9":
+					
 			}
 			
 			if(op.equals("9")) {
