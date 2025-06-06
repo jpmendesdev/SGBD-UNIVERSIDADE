@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import DAO.Create;
 import DAO.Read;
+import DAO.Update;
 import entities.Aluno;
 import entities.AlunoCadeira;
 import entities.Cadeira;
@@ -42,7 +43,8 @@ public class Program {
 			System.out.println("7 - Matricular Aluno em Cadeira");
 			System.out.println("8 - Matricular Professor em Cadeira");
 			System.out.println("9 - Deletar tabela");
-			System.out.println("10 - Sair");
+			System.out.println("10 - Aluno - Trancar Curso");
+			System.out.println("0 - Sair");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -122,10 +124,19 @@ public class Program {
 					create.matricularProfessorCadeira(professorC);
 					break;
 				case "9":
-					
+					System.out.println("...");
+					break;
+				case "10":
+					System.out.print("Informe o id do aluno que deseja trancar o curso: ");
+					int id_alunoD = sc.nextInt();
+					sc.nextLine();
+					Aluno alunoDelete = new Aluno(id_alunoD);
+					Update updateAluno = new Update();
+					updateAluno.desmatricularAluno(alunoDelete);
+					break;
 			}
 			
-			if(op.equals("9")) {
+			if(op.equals("0")) {
 				System.out.println("Saindo...");
 				break;
 			}

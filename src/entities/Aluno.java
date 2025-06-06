@@ -19,6 +19,10 @@ public class Aluno {
 		this.id_curso = id_curso;
 	}
 	
+	public Aluno(int id_aluno) {
+		this.id_aluno = id_aluno;
+	}
+	
 	
 	public int getId_aluno() {
 		return id_aluno;

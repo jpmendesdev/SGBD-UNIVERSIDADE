@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import connection.Conexao;
+import entities.Aluno;
 
 
 public class Delete {
@@ -25,12 +26,14 @@ public class Delete {
 		
 	}
 	
-	public void desmatricularAluno() {
+	public void desmatricularAluno(Aluno aluno) {
 		
-		String dropAluno = "DELETE FROM Aluno WHERE aluno_id = ?";
+		String dropAluno = "DELETE FROM Aluno WHERE id_aluno = ?";
 		
 		try {
 			ps = Conexao.getConexao().prepareStatement(dropAluno);
+			
+			ps.setInt(1, aluno.getId_aluno());
 			
 			ps.execute();
 			ps.close();
