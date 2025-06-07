@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import connection.Conexao;
 import entities.Aluno;
-import entities.Curso;
+import entities.Professor;
 
 public class Read {
 	
@@ -111,5 +111,24 @@ public void alunosEmCurso(Aluno aluno) throws SQLException {
 		 }
 	 }
 }
+
+public void professoresLecionando(Professor professor) throws SQLException {
 	
+	 
+	String qtdProfessores = "SELECT COUNT(situacao)\n"
+			+ "FROM Professor\n"
+			+ "WHERE situacao = 'Lecionando' and id_curso = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(qtdProfessores)) {
+		 ps.setInt(1, professor.getId_curso());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 int count = rs.getInt(1);
+				 System.out.println("Número de professores lecionando no curso: "+count);
+			 }
+		 }
+	
+	
+}
+}
 }

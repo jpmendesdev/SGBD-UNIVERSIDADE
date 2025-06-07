@@ -46,6 +46,7 @@ public class Program {
 			System.out.println("10 - Aluno - Trancar Curso");
 			System.out.println("11 - Professor - Afastar do curso");
 			System.out.println("12 - Qtd Alunos matriculados em determinado curso");
+			System.out.println("13 - Qtd Professores lecionando em determinado curso");
 			System.out.println("0 - Sair");
 			String op = sc.nextLine();
 			
@@ -155,6 +156,14 @@ public class Program {
 					 sc.nextLine();
 					 Aluno alunoQtd = new Aluno(id_cursoQtd);
 					 readQtdAlunos.alunosEmCurso (alunoQtd);
+					break;
+				case "13":
+					Read readQtdProfessores = new Read();
+					System.out.print("Id do curso: ");
+					int id_cursoPqtd = sc.nextInt();
+					sc.nextLine();
+					Professor professorQtd = new Professor(id_cursoPqtd);
+					readQtdProfessores.professoresLecionando(professorQtd);
 					break;
 			}
 			

@@ -25,8 +25,8 @@ public class Professor {
 		this.situacao = "Lecionando";
 	}
 	
-	public Professor(int id_professor) {
-		this.id_professor = id_professor;
+	public Professor(int id_curso) {
+		this.id_curso = id_curso;
 	}
 
 	public int getId_professor() {
