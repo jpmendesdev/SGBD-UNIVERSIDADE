@@ -45,6 +45,7 @@ public class Program {
 			System.out.println("9 - Deletar tabela");
 			System.out.println("10 - Aluno - Trancar Curso");
 			System.out.println("11 - Professor - Afastar do curso");
+			System.out.println("12 - Qtd Alunos matriculados em determinado curso");
 			System.out.println("0 - Sair");
 			String op = sc.nextLine();
 			
@@ -71,6 +72,8 @@ public class Program {
 					create.inserirCadeira(cadeira);
 					break;
 				case "3":
+					Aluno alunoDefaultCurso = new Aluno();
+					String situacao = alunoDefaultCurso.getSituacao();
 					System.out.print("Digite o nome do aluno: ");
 					String nomeAluno = sc.nextLine();
 					System.out.print("Digite o e-mail do aluno: ");
@@ -78,10 +81,12 @@ public class Program {
 					System.out.print("Qual curso deseja matricular o aluno?: ");
 					int idCurso = sc.nextInt();
 					sc.nextLine();
-					Aluno aluno = new Aluno(nomeAluno,emailAluno,idCurso);
+					Aluno aluno = new Aluno(nomeAluno,emailAluno,idCurso,situacao);
 					create.inserirAluno(aluno);
 					break;
 				case "4":
+					Professor professorDefaultCurso = new Professor();
+					String situacaoProfessor = professorDefaultCurso.getSituacao();
 					System.out.print("Digite o nome do professor: ");
 					String nomeProfessor = sc.nextLine();
 					System.out.print("Digite o e-mail do professor: ");
@@ -89,7 +94,7 @@ public class Program {
 					System.out.print("Qual curso deseja matricular o professor?: ");
 					int idCursop = sc.nextInt();
 					sc.nextLine();
-					Professor professor = new Professor(nomeProfessor,emailProfessor,idCursop);
+					Professor professor = new Professor(nomeProfessor,emailProfessor,idCursop,situacaoProfessor);
 					create.inserirProfessor(professor);
 					break;
 				case "5":
@@ -142,6 +147,14 @@ public class Program {
 					Professor professorUpdate = new Professor(id_professorD);
 					Update updateProfessor = new Update();
 					updateProfessor.desmatricularProfessor(professorUpdate);
+					break;
+				case "12":
+					 Read readQtdAlunos = new Read();
+					 System.out.print("Id do curso: ");
+					 int id_cursoQtd = sc.nextInt();
+					 sc.nextLine();
+					 Aluno alunoQtd = new Aluno(id_cursoQtd);
+					 readQtdAlunos.alunosEmCurso (alunoQtd);
 					break;
 			}
 			

@@ -16,6 +16,10 @@ public class Curso {
 		this.nome = nome;
 		this.nivel = nivel;
 	}
+	
+	public Curso (String nome) {
+		this.nome = nome;
+	}
 
 
 	public int getCurso_id() {

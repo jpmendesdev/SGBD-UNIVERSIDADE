@@ -118,8 +118,8 @@ public class Create {
 	
 	public void inserirAluno(Aluno aluno) {
 		
-		String sqlAluno = "INSERT INTO Aluno (nome, email, id_curso)\n"
-				+ "VALUES (?, ?, ?);";
+		String sqlAluno = "INSERT INTO Aluno (nome, email, id_curso, situacao)\n"
+				+ "VALUES (?, ?, ?, ?);";
 		
 		try {
 			ps = Conexao.getConexao().prepareStatement(sqlAluno);
@@ -127,6 +127,7 @@ public class Create {
 			ps.setString(1,aluno.getNome());
 			ps.setString(2,aluno.getEmail());
 			ps.setInt(3,aluno.getId_curso());
+			ps.setString(4,aluno.getSituacao());
 			
 			ps.execute();
 			ps.close();
@@ -140,8 +141,8 @@ public class Create {
 	
 	public void inserirProfessor(Professor professor) {
 		
-		String sqlProfessor = "INSERT INTO Professor (nome, email, id_curso)\n"
-							+ "VALUES (? , ?, ?);"; 
+		String sqlProfessor = "INSERT INTO Professor (nome, email, id_curso, situacao)\n"
+							+ "VALUES (? , ?, ?, ?);"; 
 		
 		try {
 			ps = Conexao.getConexao().prepareStatement(sqlProfessor);
@@ -149,6 +150,7 @@ public class Create {
 			ps.setString(1,professor.getNome());
 			ps.setString(2, professor.getEmail());
 			ps.setInt(3,professor.getId_curso());
+			ps.setString(4,professor.getSituacao());
 			
 			ps.execute();
 			ps.close();
