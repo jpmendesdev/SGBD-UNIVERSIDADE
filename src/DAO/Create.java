@@ -10,6 +10,7 @@ import entities.Cadeira;
 import entities.Curso;
 import entities.Professor;
 import entities.ProfessorCadeira;
+import entities.Usuario;
 
 
 public class Create {
@@ -23,6 +24,7 @@ public class Create {
 		PreparedStatement ps4 = null;
 		PreparedStatement ps5 = null;
 		PreparedStatement ps6 = null;
+		PreparedStatement ps7 = null;
 		
 		String sqlTabelaCurso = "CREATE TABLE IF NOT EXISTS Curso (\r\n"
 				+ "	   id_curso INT PRIMARY KEY UNIQUE AUTO_INCREMENT NOT NULL,\r\n"
@@ -67,6 +69,10 @@ public class Create {
 				+ " FOREIGN KEY (id_professor) REFERENCES Professor(id_professor),\n"
 				+ " FOREIGN KEY (id_cadeira)  REFERENCES Cadeira(id_cadeira));";
 				
+		String sqlTabelaUsuario = "CREATE TABLE IF NOT EXISTS Usuario (\n"
+				+ " id_usuario INT PRIMARY KEY AUTO_INCREMENT,\n"
+				+ " login VARCHAR(50),\n"
+				+ " senha VARCHAR(50));";
 
 		
 		try {
@@ -77,6 +83,7 @@ public class Create {
 		ps4 = Conexao.getConexao().prepareStatement(sqlTabelaCadeira);
 		ps5 = Conexao.getConexao().prepareStatement(sqlTabelaAlunoCadeira);
 		ps6 = Conexao.getConexao().prepareStatement(sqlTabelaProfessorCadeira);
+		ps7 = Conexao.getConexao().prepareStatement(sqlTabelaUsuario);
 		
 		ps.execute();
 		ps.close();
@@ -90,6 +97,8 @@ public class Create {
 		ps5.close();
 		ps6.execute();
 		ps6.close();
+		ps7.execute();
+		ps7.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -215,6 +224,26 @@ public class Create {
 			
 			ps.execute();
 			ps.close();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void cadastrarUsuario(Usuario usuario) {
+		
+		String sqlNovoUsuario = "INSERT INTO Usuario (login,senha)\n"
+				+"VALUES (?, ?);";
+		
+		try {
+			ps = Conexao.getConexao().prepareStatement(sqlNovoUsuario);
+			
+			ps.setString(1, usuario.getLogin());
+			ps.setString(2, usuario.getSenha());
+			
+			ps.execute();
+			ps.close();
+		
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -5,14 +5,7 @@ import java.util.Locale;
 import java.util.Scanner;
 
 import DAO.Create;
-import DAO.Read;
-import DAO.Update;
-import entities.Aluno;
-import entities.AlunoCadeira;
-import entities.Cadeira;
-import entities.Curso;
-import entities.Professor;
-import entities.ProfessorCadeira;
+import entities.Usuario;
 import menus.MenuCursoCadeira;
 import menus.menuAlunos;
 import menus.menuProfessores;
@@ -49,7 +42,8 @@ public class Program {
 			System.out.println("1 - Alunos");
 			System.out.println("2 - Professores");
 			System.out.println("3 - Curso/Cadeira");
-			System.out.println("4 - Encerrar Menu Principal");
+			System.out.println("4 - Cadastrar Usuário");
+			System.out.println("5 - Encerrar Menu Principal");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -66,9 +60,17 @@ public class Program {
 				MenuCursoCadeira menuCursoCadeira = new MenuCursoCadeira();
 				menuCursoCadeira.menuCursoCadeira();
 				break;
+			case "4":
+				System.out.print("Informe o login para cadastrar: ");
+				String login = sc.nextLine();
+				System.out.print("Informe a senha para cadastrar: ");
+				String senhaTeste = sc.nextLine();
+				Usuario usuarioTeste = new Usuario(login,senhaTeste);
+				create.cadastrarUsuario(usuarioTeste);
+				break;
 			}
 			
-			if(op.equals("4")) {
+			if(op.equals("5")) {
 				System.out.println("Saindo...");
 				break;
 			}
