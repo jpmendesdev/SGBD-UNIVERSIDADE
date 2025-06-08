@@ -1,7 +1,7 @@
 package entities;
 
 public class Aluno {
-	private int id_aluno;
+	private Integer id_aluno;
 	private String nome;
 	private String email;
 	private int id_curso;
@@ -9,7 +9,7 @@ public class Aluno {
 	
 	public Aluno() {}
 	
-	public Aluno(int id_aluno, String nome, String email, int id_curso, String situacao) {
+	public Aluno(Integer id_aluno, String nome, String email, int id_curso, String situacao) {
 		this.id_aluno = id_aluno;
 		this.nome = nome;
 		this.email = email;
@@ -28,13 +28,16 @@ public class Aluno {
 		this.id_curso = id_curso;
 	}
 	
+	public Aluno (Integer id_aluno) {
+		this.id_aluno = id_aluno;
+	}
 	
-	public int getId_aluno() {
+	public Integer getId_aluno() {
 		return id_aluno;
 	}
 
 
-	public void setId_aluno(int id_aluno) {
+	public void setId_aluno(Integer id_aluno) {
 		this.id_aluno = id_aluno;
 	}
 
