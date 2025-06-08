@@ -20,6 +20,10 @@ public class ProfessorCadeira {
 		this.id_professor = id_professor;
 		this.id_cadeira = id_cadeira;
 	}
+	
+	public ProfessorCadeira(int id_cadeira) {
+		this.id_cadeira = id_cadeira;
+	}
 
 	public int getProfessor_cadeira() {
 		return professor_cadeira;

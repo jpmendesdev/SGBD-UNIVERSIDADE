@@ -47,6 +47,8 @@ public class Program {
 			System.out.println("11 - Professor - Afastar do curso");
 			System.out.println("12 - Qtd Alunos matriculados em determinado curso");
 			System.out.println("13 - Qtd Professores lecionando em determinado curso");
+			System.out.println("14 - Qtd de alunos em determinada cadeira");
+			System.out.println("15 - Qtd de professores lecionando em determinado curso");
 			System.out.println("0 - Sair");
 			String op = sc.nextLine();
 			
@@ -108,7 +110,6 @@ public class Program {
 				case "7":
 					AlunoCadeira alunoDefault = new AlunoCadeira();
 					String situacaoD = alunoDefault.getSituacao();
-					
 					System.out.print("Informe o id do aluno que deseja matricular: ");
 					int id_aluno = sc.nextInt();
 					sc.nextLine();
@@ -117,6 +118,7 @@ public class Program {
 					sc.nextLine();
 					AlunoCadeira alunoC = new AlunoCadeira(situacaoD,id_aluno,id_cadeira);
 					create.matricularAlunoCadeira(alunoC);
+					break;
 				case "8":
 					ProfessorCadeira professorDefault = new ProfessorCadeira();
 					String situacaoP = professorDefault.getSituacao();
@@ -164,6 +166,22 @@ public class Program {
 					sc.nextLine();
 					Professor professorQtd = new Professor(id_cursoPqtd);
 					readQtdProfessores.professoresLecionando(professorQtd);
+					break;
+				case "14":
+					Read readQtdAlunosCadeira = new Read();
+					System.out.print("Id da cadeira: ");
+					int id_cadeiraQtd = sc.nextInt();
+					sc.nextLine();
+					AlunoCadeira alunoCadeiraQtd = new AlunoCadeira(id_cadeiraQtd);
+					readQtdAlunosCadeira.alunosEmCadeiras(alunoCadeiraQtd);
+					break;
+				case "15":
+					Read readQtdProfessoresCadeira = new Read();
+					System.out.print("Id da cadeira: ");
+					int id_cadeiraQtdProfessor = sc.nextInt();
+					sc.nextLine();
+					ProfessorCadeira professorCadeiraQtd = new ProfessorCadeira(id_cadeiraQtdProfessor);
+					readQtdProfessoresCadeira.professoresEmCadeiras(professorCadeiraQtd);
 					break;
 			}
 			

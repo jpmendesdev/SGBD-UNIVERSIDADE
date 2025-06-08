@@ -25,6 +25,10 @@ public class AlunoCadeira {
 		this.id_aluno = id_aluno;
 		this.id_cadeira = id_cadeira;
 	}
+	
+	public AlunoCadeira (int id_cadeira) {
+		this.id_cadeira = id_cadeira;
+	}
 
 	
 

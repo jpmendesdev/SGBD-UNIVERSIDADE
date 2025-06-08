@@ -7,7 +7,9 @@ import java.sql.Statement;
 
 import connection.Conexao;
 import entities.Aluno;
+import entities.AlunoCadeira;
 import entities.Professor;
+import entities.ProfessorCadeira;
 
 public class Read {
 	
@@ -129,6 +131,47 @@ public void professoresLecionando(Professor professor) throws SQLException {
 		 }
 	
 	
+	 }
+	}
+
+public void alunosEmCadeiras(AlunoCadeira alunoCadeira) throws SQLException {
+	
+	 
+	String qtdAlunos = "SELECT COUNT(situacao)\n"
+			+ "FROM Aluno_Cadeira\n"
+			+ "WHERE situacao = 'Em curso' and id_cadeira = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(qtdAlunos)) {
+		 ps.setInt(1, alunoCadeira.getId_cadeira());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 int count = rs.getInt(1);
+				 System.out.println("Número de alunos na cadeira: "+count);
+			 }
+		 }
+	
+
 }
 }
+
+public void professoresEmCadeiras(ProfessorCadeira professorCadeira) throws SQLException {
+	
+	 
+	String qtdProfessores = "SELECT COUNT(situacao)\n"
+			+ "FROM Professor_Cadeira\n"
+			+ "WHERE situacao = 'Lecionando' and id_cadeira = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(qtdProfessores)) {
+		 ps.setInt(1, professorCadeira.getId_cadeira());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 int count = rs.getInt(1);
+				 System.out.println("Número de alunos na cadeira: "+count);
+			 }
+		 }
+	
+
+}
+}
+
 }
