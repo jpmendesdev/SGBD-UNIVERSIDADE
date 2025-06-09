@@ -10,6 +10,7 @@ import entities.Aluno;
 import entities.AlunoCadeira;
 import entities.Professor;
 import entities.ProfessorCadeira;
+import entities.Usuario;
 
 public class Read {
 	
@@ -174,4 +175,23 @@ public void professoresEmCadeiras(ProfessorCadeira professorCadeira) throws SQLE
 }
 }
 
+
+public void autenticarUsuarios(Usuario usuario) throws SQLException {
+	
+	 
+	String autUsuarios =  "SELECT * FROM Usuario WHERE login = ? and senha = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(autUsuarios)) {
+		 ps.setString(1, usuario.getLogin());
+		 ps.setString(2, usuario.getSenha());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 System.out.println("LOGADO COM SUCESSO!");
+			 }else {
+				 System.out.println("ERRO AO LOGAR");
+			 }
+	 }
 }
+	}
+}
+
