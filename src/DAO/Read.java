@@ -176,7 +176,7 @@ public void professoresEmCadeiras(ProfessorCadeira professorCadeira) throws SQLE
 }
 
 
-public void autenticarUsuarios(Usuario usuario) throws SQLException {
+public boolean autenticarUsuarios(Usuario usuario) throws SQLException {
 	
 	 
 	String autUsuarios =  "SELECT * FROM Usuario WHERE login = ? and senha = ?";
@@ -187,8 +187,10 @@ public void autenticarUsuarios(Usuario usuario) throws SQLException {
 		 try (ResultSet rs = ps.executeQuery()) {
 			 if (rs.next()) {
 				 System.out.println("LOGADO COM SUCESSO!");
+				 return true;
 			 }else {
 				 System.out.println("ERRO AO LOGAR");
+				 return false;
 			 }
 	 }
 }

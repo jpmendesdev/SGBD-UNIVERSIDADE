@@ -26,14 +26,23 @@ public class Program {
 		create.criarTabela();
 		
 		
+		System.out.print("Login: ");
+		String loginOp = sc.nextLine();
+		System.out.print("Senha: ");
+		String senhaOp = sc.nextLine();
+		Read readUsuario = new Read();
+		Usuario usuarioTeste2 = new Usuario(loginOp,senhaOp);
+		
+		if(readUsuario.autenticarUsuarios(usuarioTeste2)) {
+		
+		
 		
 		while(true) {
 			System.out.println("1 - Alunos");
 			System.out.println("2 - Professores");
 			System.out.println("3 - Curso/Cadeira");
 			System.out.println("4 - Cadastrar Usuário");
-			System.out.println("5 - Autenticar Usuário");
-			System.out.println("6 - Sair");
+			System.out.println("5 - Sair");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -58,7 +67,7 @@ public class Program {
 				Usuario usuarioTeste = new Usuario(login,senhaTeste);
 				create.cadastrarUsuario(usuarioTeste);
 				break;
-			case "5":
+			/*case "5":
 				System.out.print("Login: ");
 				String loginOp = sc.nextLine();
 				System.out.print("Senha: ");
@@ -66,14 +75,16 @@ public class Program {
 				Read readUsuario = new Read();
 				Usuario usuarioTeste2 = new Usuario(loginOp,senhaOp);
 				readUsuario.autenticarUsuarios(usuarioTeste2);
-				break;
+				break; */
 			}
 			
-			if(op.equals("6")) {
+			if(op.equals("5")) {
 				System.out.println("Saindo...");
 				break;
 			}
 		}
+		
+		} 
 		
 		
 		
