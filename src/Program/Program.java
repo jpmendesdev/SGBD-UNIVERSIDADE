@@ -1,11 +1,13 @@
-package Program;
+package program;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.Scanner;
 
 import DAO.Create;
 import DAO.Read;
+import criptografia.Criptografy;
 import entities.Usuario;
 import menus.MenuCursoCadeira;
 import menus.menuAlunos;
@@ -17,7 +19,7 @@ public class Program {
 	
 	 
 	
-	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+	public static void main(String[] args) throws SQLException, ClassNotFoundException, NoSuchAlgorithmException {
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
@@ -34,6 +36,7 @@ public class Program {
 		Usuario usuarioTeste2 = new Usuario(loginOp,senhaOp);
 		
 		if(readUsuario.autenticarUsuarios(usuarioTeste2)) {
+		
 		
 		
 		
@@ -60,11 +63,13 @@ public class Program {
 				menuCursoCadeira.menuCursoCadeira();
 				break;
 			case "4":
+				Criptografy cript = new Criptografy();
 				System.out.print("Informe o login para cadastrar: ");
 				String login = sc.nextLine();
 				System.out.print("Informe a senha para cadastrar: ");
 				String senhaTeste = sc.nextLine();
-				Usuario usuarioTeste = new Usuario(login,senhaTeste);
+				String senhaHash = cript.hashPassword(senhaTeste);
+				Usuario usuarioTeste = new Usuario(login,senhaHash);
 				create.cadastrarUsuario(usuarioTeste);
 				break;
 			/*case "5":
