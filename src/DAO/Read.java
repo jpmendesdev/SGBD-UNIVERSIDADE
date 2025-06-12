@@ -128,7 +128,7 @@ public void alunosTrancados(Aluno aluno) throws SQLException {
 		 try (ResultSet rs = ps.executeQuery()) {
 			 if (rs.next()) {
 				 int count = rs.getInt(1);
-				 System.out.println("Número de alunos no curso: "+count);
+				 System.out.println("Número de alunos com o curso trancado: "+count);
 			 }
 		 }
 	 }
@@ -149,6 +149,27 @@ public void professoresLecionando(Professor professor) throws SQLException {
 			 if (rs.next()) {
 				 int count = rs.getInt(1);
 				 System.out.println("Número de professores lecionando no curso: "+count);
+			 }
+		 }
+	
+	
+	 }
+	}
+
+
+public void professoresDemitidos(Professor professor) throws SQLException {
+	
+	 
+	String qtdProfessoresDemitidos = "SELECT COUNT(situacao)\n"
+			+ "FROM Professor\n"
+			+ "WHERE situacao = 'afastado/demitido' and id_curso = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(qtdProfessoresDemitidos)) {
+		 ps.setInt(1, professor.getId_curso());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 int count = rs.getInt(1);
+				 System.out.println("Número de professores demitidos ou afastados no curso: "+count);
 			 }
 		 }
 	

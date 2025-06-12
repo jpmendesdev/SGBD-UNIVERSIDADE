@@ -24,7 +24,8 @@ public void menuProfessores() throws SQLException {
 			System.out.println("4 - Qtd Professores matriculados em determinado curso");
 			System.out.println("5 - Qtd de Professores em determinada cadeira");
 			System.out.println("6 - Visualizar Professores");
-			System.out.println("7 - Sair do Menu Professores");
+			System.out.println("7 - Qtd de Professores afastados/demitidos");
+			System.out.println("8 - Sair do Menu Professores");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -81,11 +82,19 @@ public void menuProfessores() throws SQLException {
 				Read readProfessores = new Read();
 				readProfessores.visualizarProfessores();
 				break;
+			case "7":
+				readQtdProfessores = new Read();
+				System.out.print("Id do curso: ");
+				id_cursoPqtd = sc.nextInt();
+				sc.nextLine();
+				professorQtd = new Professor(id_cursoPqtd);
+				readQtdProfessores.professoresDemitidos(professorQtd);
+				break;
 			
 				
 			}
 			
-			if(op.equals("7")) {
+			if(op.equals("8")) {
 				System.out.println("Saindo...");
 				break;
 			}
