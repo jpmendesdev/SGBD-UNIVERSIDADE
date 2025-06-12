@@ -115,6 +115,27 @@ public void alunosEmCurso(Aluno aluno) throws SQLException {
 	 }
 }
 
+
+public void alunosTrancados(Aluno aluno) throws SQLException {
+	
+	 
+	String qtdAlunosTrancados = "SELECT COUNT(situacao)\n"
+			+ "FROM Aluno\n"
+			+ "WHERE situacao = 'trancado' and id_curso = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(qtdAlunosTrancados)) {
+		 ps.setInt(1, aluno.getId_curso());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 int count = rs.getInt(1);
+				 System.out.println("Número de alunos no curso: "+count);
+			 }
+		 }
+	 }
+}
+
+
+ 
 public void professoresLecionando(Professor professor) throws SQLException {
 	
 	 

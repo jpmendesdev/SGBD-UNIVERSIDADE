@@ -23,7 +23,8 @@ public class menuAlunos {
 			System.out.println("4 - Qtd Alunos matriculados em determinado curso");
 			System.out.println("5 - Qtd de alunos em determinada cadeira");
 			System.out.println("6 - Visualizar Alunos");
-			System.out.println("7 - Sair do Menu Alunos");
+			System.out.println("7 - Qtd Alunos trancados");
+			System.out.println("8 - Sair do Menu Alunos");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -79,6 +80,14 @@ public class menuAlunos {
 			case "6":
 				Read readAlunos = new Read();
 				readAlunos.visualizarAlunos();
+				break;
+			case "7":
+			     readQtdAlunos = new Read();
+				 System.out.print("Id do curso: ");
+				 id_cursoQtd = sc.nextInt();
+				 sc.nextLine();
+				 alunoQtd = new Aluno(id_cursoQtd);
+				 readQtdAlunos.alunosTrancados(alunoQtd);
 				break;
 			
 			}
