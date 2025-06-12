@@ -72,7 +72,7 @@ public class Create {
 		String sqlTabelaUsuario = "CREATE TABLE IF NOT EXISTS Usuario (\n"
 				+ " id_usuario INT PRIMARY KEY AUTO_INCREMENT,\n"
 				+ " login VARCHAR(50),\n"
-				+ " senha LONGBLOB);";
+				+ " senha VARCHAR(50));";
 
 		
 		try {

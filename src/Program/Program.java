@@ -27,7 +27,7 @@ public class Program {
 		Create create = new Create();
 		create.criarTabela();
 		
-		
+		while(true) {
 		System.out.print("Login: ");
 		String loginOp = sc.nextLine();
 		System.out.print("Senha: ");
@@ -35,8 +35,8 @@ public class Program {
 		Read readUsuario = new Read();
 		Usuario usuarioTeste2 = new Usuario(loginOp,senhaOp);
 		
-		if(readUsuario.autenticarUsuarios(usuarioTeste2)) {
-		
+		if(readUsuario.autenticarUsuarios(usuarioTeste2)) { 
+			
 		
 		
 		
@@ -68,8 +68,8 @@ public class Program {
 				String login = sc.nextLine();
 				System.out.print("Informe a senha para cadastrar: ");
 				String senhaTeste = sc.nextLine();
-				String senhaHash = cript.hashPassword(senhaTeste);
-				Usuario usuarioTeste = new Usuario(login,senhaHash);
+				//String senhaHash = cript.hashPassword(senhaTeste);
+				Usuario usuarioTeste = new Usuario(login,senhaTeste);
 				create.cadastrarUsuario(usuarioTeste);
 				break;
 			/*case "5":
@@ -88,14 +88,15 @@ public class Program {
 				break;
 			}
 		}
+		break;
 		
-		} 
-		
-		
-		
+		}
 		
 		
 		
 		
+		
+		
+		}
 	}
 }
