@@ -16,7 +16,8 @@ public void menuCursoCadeira() {
 		while(true) {
 			System.out.println("1 - Criar Curso");
 			System.out.println("2 - Cria Cadeira");
-			System.out.println("3 - Sair do Menu Curso/Cadeira");
+			System.out.println("3 - Qtd de Alunos em determindada Cadeira");
+			System.out.println("4 - Sair do Menu Curso/Cadeira");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -42,10 +43,13 @@ public void menuCursoCadeira() {
 				Cadeira cadeira = new Cadeira(novaCadeira,creditos,id_curso);
 				create.inserirCadeira(cadeira);
 				break;
+			case "3":
+				
+				break;
 			
 			}
 			
-			if(op.equals("3")) {
+			if(op.equals("4")) {
 				System.out.println("Saindo...");
 				break;
 			}

@@ -26,7 +26,7 @@ public class Delete {
 		
 	}
 	
-	public void desmatricularAluno(Aluno aluno) {
+	/*public void desmatricularAluno(Aluno aluno) {
 		
 		String dropAluno = "DELETE FROM Aluno WHERE id_aluno = ?";
 		
@@ -41,6 +41,6 @@ public class Delete {
 			e.printStackTrace();
 		}
 
-	}
+	} */
 	
 }

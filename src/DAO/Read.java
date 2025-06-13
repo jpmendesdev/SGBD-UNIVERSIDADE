@@ -115,6 +115,43 @@ public void alunosEmCurso(Aluno aluno) throws SQLException {
 	 }
 }
 
+public void alunosCursandoCadeira(AlunoCadeira alunoCadeira) throws SQLException {
+	
+	 
+	String qtdAlunosCadeira = "SELECT COUNT(situacao)\n"
+			+ "FROM Aluno_Cadeira\n"
+			+ "WHERE situacao = 'Em curso' and id_cadeira = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(qtdAlunosCadeira)) {
+		 ps.setInt(1, alunoCadeira.getId_cadeira());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 int count = rs.getInt(1);
+				 System.out.println("Número de alunos na cadeira: "+count);
+			 }
+		 }
+	 }
+}
+
+
+public void alunosTrancadosCadeira(AlunoCadeira alunoCadeira) throws SQLException {
+	
+	 
+	String qtdAlunosCadeira = "SELECT COUNT(situacao)\n"
+			+ "FROM Aluno_Cadeira\n"
+			+ "WHERE situacao = 'trancado' and id_cadeira = ?";
+	
+	 try (PreparedStatement ps = Conexao.getConexao().prepareStatement(qtdAlunosCadeira)) {
+		 ps.setInt(1, alunoCadeira.getId_cadeira());
+		 try (ResultSet rs = ps.executeQuery()) {
+			 if (rs.next()) {
+				 int count = rs.getInt(1);
+				 System.out.println("Número de alunos na cadeira: "+count);
+			 }
+		 }
+	 }
+}
+
 
 public void alunosTrancados(Aluno aluno) throws SQLException {
 	

@@ -24,7 +24,10 @@ public class menuAlunos {
 			System.out.println("5 - Qtd de alunos em determinada cadeira");
 			System.out.println("6 - Visualizar Alunos");
 			System.out.println("7 - Qtd Alunos trancados");
-			System.out.println("8 - Sair do Menu Alunos");
+			System.out.println("8 - Qtd Alunos cursando em determinada cadeira");
+			System.out.println("9 - Qtd Alunos trancados em determinada cadeira");
+			System.out.println("10 - Aluno - Trancar Cadeira");
+			System.out.println("11 - Sair do Menu Alunos");
 			String op = sc.nextLine();
 			
 			switch(op) {
@@ -88,11 +91,35 @@ public class menuAlunos {
 				 sc.nextLine();
 				 alunoQtd = new Aluno(id_cursoQtd);
 				 readQtdAlunos.alunosTrancados(alunoQtd);
+				 break;
+			case "8":
+				 readQtdAlunos = new Read();
+				 System.out.print("Id da cadeira: ");
+				 id_cadeiraQtd = sc.nextInt();
+				 sc.nextLine();
+				 AlunoCadeira alunoCadeira = new AlunoCadeira(id_cadeiraQtd);
+				 readQtdAlunos.alunosCursandoCadeira(alunoCadeira);
+				break;
+			case "9":
+				 readQtdAlunos = new Read();
+				 System.out.print("Id da cadeira: ");
+				 id_cadeiraQtd = sc.nextInt();
+				 sc.nextLine();
+				 alunoCadeira = new AlunoCadeira(id_cadeiraQtd);
+				 readQtdAlunos.alunosTrancadosCadeira(alunoCadeira);
+				break;
+			case "10":
+				System.out.print("Informe o id do aluno que deseja trancar o curso: ");
+				id_alunoD = sc.nextInt();
+				sc.nextLine();
+				alunoCadeira = new AlunoCadeira(id_alunoD);
+			    updateAluno = new Update();
+				updateAluno.desmatricularAlunoCadeira(alunoCadeira);
 				break;
 			
 			}
 			
-			if(op.equals("7")) {
+			if(op.equals("11")) {
 				System.out.println("Saindo...");
 				break;
 			}
